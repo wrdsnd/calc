@@ -22,21 +22,18 @@ import {
 export default function Page() {
   const fuelOnStart = useNumberInput({
     step: 1,
-    defaultValue: 0,
     min: 0,
     precision: 0,
   });
 
   const fuelReceived = useNumberInput({
     step: 1,
-    defaultValue: 0,
     min: 0,
     precision: 2,
   });
 
   const fuelOnEnd = useNumberInput({
     step: 1,
-    defaultValue: 0,
     min: 0,
     precision: 0,
   });
@@ -74,11 +71,11 @@ export default function Page() {
         Результат заполнения путевого листа
       </Heading>
       <ResultTable
-        fuelOnStart={fuelOnStart.valueAsNumber}
-        fuelReceived={fuelReceived.valueAsNumber}
+        fuelOnStart={fuelOnStart.valueAsNumber || 0}
+        fuelReceived={fuelReceived.valueAsNumber  || 0}
         firstShiftRides={firstShiftRides.valueAsNumber}
         secondShiftRides={secondShiftRides.valueAsNumber}
-        fuelOnEnd={fuelOnEnd.valueAsNumber}
+        fuelOnEnd={fuelOnEnd.valueAsNumber || 0}
       />
     </Container>
   );
@@ -109,9 +106,9 @@ function ResultTable({
         <Thead>
           <Tr>
             <Th>Смена</Th>
-            <Th isNumeric>Топливо в баке на начало смены</Th>
-            <Th isNumeric>Получено топлива</Th>
-            <Th isNumeric>Топливо в баке в конце смены</Th>
+            <Th isNumeric>Топливо в баке<br/> на начало <br/>смены</Th>
+            <Th isNumeric>Получено<br/> топлива</Th>
+            <Th isNumeric>Топливо в баке <br/>в конце <br/>смены</Th>
           </Tr>
         </Thead>
         <Tbody>
