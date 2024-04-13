@@ -56,7 +56,7 @@ export default function Page() {
   });
 
   return (
-    <Container as="main" maxW='1200px'>
+    <Container as="main" maxW='900px'>
       <Heading as="h1" mb={4}>
         Калькулятор межсменных остатков
       </Heading>
