@@ -40,15 +40,13 @@ export default function Page() {
 
   const firstShiftRides = useNumberInput({
     step: 1,
-    defaultValue: 1,
-    min: 1,
+    min: 0,
     precision: 0,
   });
 
   const secondShiftRides = useNumberInput({
     step: 1,
-    defaultValue: 1,
-    min: 1,
+    min: 0,
     precision: 0,
   });
 
@@ -73,8 +71,8 @@ export default function Page() {
       <ResultTable
         fuelOnStart={fuelOnStart.valueAsNumber || 0}
         fuelReceived={fuelReceived.valueAsNumber || 0}
-        firstShiftRides={firstShiftRides.valueAsNumber}
-        secondShiftRides={secondShiftRides.valueAsNumber}
+        firstShiftRides={firstShiftRides.valueAsNumber || 0}
+        secondShiftRides={secondShiftRides.valueAsNumber || 0}
         fuelOnEnd={fuelOnEnd.valueAsNumber || 0}
       />
     </Container>
@@ -96,9 +94,9 @@ function ResultTable({
   fuelOnEnd,
 }: ResultTableProps) {
   const totalRides = firstShiftRides + secondShiftRides;
-  const fuelAtTheEndOfTheFirstShift = Math.round(
+  const fuelAtTheEndOfTheFirstShift = totalRides > 0 ? Math.round(
     fuelOnStart - (fuelReceived / totalRides) * firstShiftRides
-  );
+  ) : 0;
 
   return (
     <TableContainer>
@@ -162,41 +160,31 @@ function Controls(p: {
       <FormControl mb={2}>
         <FormLabel>Топливо на начало смены (утро)</FormLabel>
         <HStack maxW="320px">
-          <Button {...p.fuelOnStart.getDecrementButtonProps()}>-</Button>
           <Input {...p.fuelOnStart.getInputProps()} />
-          <Button {...p.fuelOnStart.getIncrementButtonProps()}>+</Button>
         </HStack>
       </FormControl>
       <FormControl mb={2}>
         <FormLabel>Получено топлива (заправка)</FormLabel>
         <HStack maxW="320px">
-          <Button {...p.fuelReceived.getDecrementButtonProps()}>-</Button>
           <Input {...p.fuelReceived.getInputProps()} />
-          <Button {...p.fuelReceived.getIncrementButtonProps()}>+</Button>
         </HStack>
       </FormControl>
       <FormControl mb={2}>
         <FormLabel>Топливо в конце смены (вечер)</FormLabel>
         <HStack maxW="320px">
-          <Button {...p.fuelOnEnd.getDecrementButtonProps()}>-</Button>
           <Input {...p.fuelOnEnd.getInputProps()} />
-          <Button {...p.fuelOnEnd.getIncrementButtonProps()}>+</Button>
         </HStack>
       </FormControl>
       <FormControl mb={2}>
         <FormLabel>Количество рейсов 1 смены</FormLabel>
         <HStack maxW="320px">
-          <Button {...p.firstShiftRides.getDecrementButtonProps()}>-</Button>
           <Input {...p.firstShiftRides.getInputProps()} />
-          <Button {...p.firstShiftRides.getIncrementButtonProps()}>+</Button>
         </HStack>
       </FormControl>
       <FormControl>
         <FormLabel>Количество рейсов 2 смены</FormLabel>
         <HStack maxW="320px">
-          <Button {...p.secondShiftRides.getDecrementButtonProps()}>-</Button>
           <Input {...p.secondShiftRides.getInputProps()} />
-          <Button {...p.secondShiftRides.getIncrementButtonProps()}>+</Button>
         </HStack>
       </FormControl>
     </Box>
