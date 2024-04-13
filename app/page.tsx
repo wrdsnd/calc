@@ -53,11 +53,11 @@ export default function Page() {
   });
 
   return (
-    <Container as="main" maxW='900px'>
-      <Heading as="h1" mb={4}>
+    <Container as="main" maxW="900px">
+      <Heading as="h1" size="lg" mb={4}>
         Калькулятор межсменных остатков
       </Heading>
-      <Heading as="h2" size="lg" mb={4}>
+      <Heading as="h2" size="md" mb={4}>
         Ввод данных
       </Heading>
       <Controls
@@ -67,12 +67,12 @@ export default function Page() {
         firstShiftRides={firstShiftRides}
         secondShiftRides={secondShiftRides}
       />
-      <Heading as="h2" size="lg" my={4}>
+      <Heading as="h2" size="md" my={4}>
         Результат заполнения путевого листа
       </Heading>
       <ResultTable
         fuelOnStart={fuelOnStart.valueAsNumber || 0}
-        fuelReceived={fuelReceived.valueAsNumber  || 0}
+        fuelReceived={fuelReceived.valueAsNumber || 0}
         firstShiftRides={firstShiftRides.valueAsNumber}
         secondShiftRides={secondShiftRides.valueAsNumber}
         fuelOnEnd={fuelOnEnd.valueAsNumber || 0}
@@ -105,24 +105,44 @@ function ResultTable({
       <Table>
         <Thead>
           <Tr>
-            <Th>Смена</Th>
-            <Th isNumeric>Топливо в баке<br/> на начало <br/>смены</Th>
-            <Th isNumeric>Получено<br/> топлива</Th>
-            <Th isNumeric>Топливо в баке <br/>в конце <br/>смены</Th>
+            <Th px={1}>Смена</Th>
+            <Th px={1} isNumeric>
+              Топливо <br />в баке
+              <br /> на начало <br />
+              смены
+            </Th>
+            <Th px={1} isNumeric>
+              Получено
+              <br /> топлива
+            </Th>
+            <Th px={1} isNumeric>
+              Топливо <br />в баке <br />в конце <br />
+              смены
+            </Th>
           </Tr>
         </Thead>
         <Tbody>
           <Tr>
-            <Td>1</Td>
-            <Td isNumeric>{fuelOnStart}</Td>
-            <Td isNumeric></Td>
-            <Td isNumeric>{fuelAtTheEndOfTheFirstShift}</Td>
+            <Td px={1}>1</Td>
+            <Td px={1} isNumeric>
+              {fuelOnStart}
+            </Td>
+            <Td px={1} isNumeric></Td>
+            <Td px={1} isNumeric>
+              {fuelAtTheEndOfTheFirstShift}
+            </Td>
           </Tr>
           <Tr>
-            <Td>2</Td>
-            <Td isNumeric>{fuelAtTheEndOfTheFirstShift}</Td>
-            <Td isNumeric>{fuelReceived}</Td>
-            <Td isNumeric>{fuelOnEnd}</Td>
+            <Td px={1}>2</Td>
+            <Td px={1} isNumeric>
+              {fuelAtTheEndOfTheFirstShift}
+            </Td>
+            <Td px={1} isNumeric>
+              {fuelReceived}
+            </Td>
+            <Td px={1} isNumeric>
+              {fuelOnEnd}
+            </Td>
           </Tr>
         </Tbody>
       </Table>
